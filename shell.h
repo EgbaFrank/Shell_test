@@ -10,4 +10,12 @@
 #include <string.h>
 #include <errno.h>
 
-#endif /*SHELL_H*/
+extern char **environ;
+
+char **tokenate(char *str);
+char *path_finder(char *file);
+void freetok(char **head);
+int builtin(char **toks);
+void execute(char **toks, char *file);
+
+#endif /* SHELL */
