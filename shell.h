@@ -17,5 +17,6 @@ char *path_finder(char *file);
 void freetok(char **head);
 int builtin(char **toks);
 void execute(char **toks, char *file);
+void env(void);
 
 #endif /* SHELL */

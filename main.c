@@ -36,6 +36,7 @@ int main(int ac __attribute__((unused)), char **av __attribute__((unused)))
 				break;
 			else if (builtin(token) == 1)
 			{
+				env();
 				freetok(token);
 				continue;
 			}
@@ -51,6 +52,7 @@ int main(int ac __attribute__((unused)), char **av __attribute__((unused)))
 /**
  * execute - checks for command and execute
  * @toks: an array of strings of commands
+ * @file: name of file
  *
  * Return: void
  */
@@ -67,11 +69,8 @@ void execute(char **toks, char *file)
 		return;
 	}
 	fullpath = path_finder(filename);
-
 	if (toks[0][0] == '/')
-	{
-	}
-
+	{}
 	else if (fullpath != NULL)
 	{
 		free(toks[0]);
@@ -128,15 +127,10 @@ void freetok(char **head)
 
 int builtin(char **toks)
 {
-	int i;
+	/*int i;*/
 
 	if (strcmp(toks[0], "env") == 0)
-	{
-		for (i = 0; environ[i] != NULL; ++i)
-			printf("%s\n", environ[i]);
-
 		return (1);
-	}
 
 	else if (strcmp(toks[0], "exit") == 0)
 	{
@@ -147,4 +141,18 @@ int builtin(char **toks)
 
 	else
 		return (0);
+}
+
+/**
+ * env - prints environment variables
+ *
+ * Return: void
+ */
+
+void env(void)
+{
+	int i;
+
+	for (i = 0; environ[i] != NULL; ++i)
+		printf("%s\n", environ[i]);
 }
