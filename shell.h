@@ -9,6 +9,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <errno.h>
+#define MAX_ARGS 10
 
 extern char **environ;
 
